@@ -77,18 +77,27 @@
 	// 	console.log("---\n" + archive._getWestley().getHistory().join("\n") + "\n---");
 	// });
 
-	var library = require("./module.js"),
-		KeePass2XMLImporter = library.KeePass2XMLImporter;
+	// var library = require("./module.js"),
+	// 	KeePass2XMLImporter = library.KeePass2XMLImporter;
 
-	KeePass2XMLImporter.loadFromFile("/Users/pez/perry.test.xml").then(function(importer) {
-		importer.exportArchive().then(function(archive) {
-			console.log(JSON.stringify(archive._getWestley()._dataset));
-			//console.log("---\n" + archive._getWestley().getHistory().join("\n") + "\n---");
-		}).catch(function(err) {
-			console.error("err", err);
-		});
-	}).catch(function(err) {
-		console.error("err", err);
-	});
+	// KeePass2XMLImporter.loadFromFile("/Users/pez/perry.test.xml").then(function(importer) {
+	// 	importer.exportArchive().then(function(archive) {
+	// 		console.log(JSON.stringify(archive._getWestley()._dataset));
+	// 		//console.log("---\n" + archive._getWestley().getHistory().join("\n") + "\n---");
+	// 	}).catch(function(err) {
+	// 		console.error("err", err);
+	// 	});
+	// }).catch(function(err) {
+	// 	console.error("err", err);
+	// });
+
+	var library = require("./module.js"),
+		PasswordGenerator = library.PasswordGenerator;
+
+	var pg = new PasswordGenerator();
+	pg.useCharacterSet(PasswordGenerator.CharacterSet.lowerCaseLetters)
+		.useCharacterSet(PasswordGenerator.CharacterSet.upperCaseLetters)
+		.useCharacterSet(PasswordGenerator.CharacterSet.numbers);
+	console.log("pass:", pg.generatePassword(32));
 
 })();

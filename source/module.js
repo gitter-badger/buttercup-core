@@ -20,7 +20,9 @@
 
 		// Encryption info from: http://lollyrock.com/articles/nodejs-encryption/
 		Encryption: require(GLOBAL.root + "/encryption/encrypt.js"),
-		Decryption: require(GLOBAL.root + "/encryption/decrypt.js")
+		Decryption: require(GLOBAL.root + "/encryption/decrypt.js"),
+
+		PasswordGenerator: require(GLOBAL.root + "/classes/passgen/PasswordGenerator.js")
 
 	};
 
