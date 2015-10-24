@@ -11,4 +11,5 @@ module.exports = {
 		test.notStrictEqual(signed, raw);
 		test.done();
 	}
+	
 };
