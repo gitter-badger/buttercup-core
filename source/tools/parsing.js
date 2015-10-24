@@ -20,9 +20,24 @@
 		},
 
 		getRandomNumber: function(min, max) {
-			max += 1;
-			var rnd = crypto.randomBytes(1);
-			return (rnd[0] % (max - min)) + min;
+			return (min === max) ? min : (function() {
+				max += 1;
+				var rnd = crypto.randomBytes(1);
+				return (rnd[0] % (max - min)) + min;
+			})();
+		},
+
+		hasDuplicateChars: function(text, characters) {
+			characters = characters || "";
+			var coll = "",
+				useChars = characters.length > 0;
+			for (var i = 0, tLen = text.length; i < tLen; i += 1) {
+				if (coll.indexOf(text[i]) >= 0) {
+					return (useChars) ? characters.indexOf(text[i]) > 0 : true;
+				}
+				coll += text[i];
+			}
+			return false;
 		}
 
 	};

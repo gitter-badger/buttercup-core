@@ -97,6 +97,9 @@
 	var pg = new PasswordGenerator();
 	pg.useCharacterSet(PasswordGenerator.CharacterSet.lowerCaseLetters)
 		.useCharacterSet(PasswordGenerator.CharacterSet.upperCaseLetters)
+		.useCharacterSet(PasswordGenerator.CharacterSet.dash)
+		.useCharacterSet(PasswordGenerator.CharacterSet.underscore)
+		.useCharacterSet(PasswordGenerator.CharacterSet.special)
 		.useCharacterSet(PasswordGenerator.CharacterSet.numbers);
 	console.log("pass:", pg.generatePassword(32));
 
