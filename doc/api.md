@@ -8,6 +8,14 @@
 <dd></dd>
 <dt><a href="#Westley">Westley</a></dt>
 <dd></dd>
+<dt><a href="#PasswordGenerator">PasswordGenerator</a></dt>
+<dd></dd>
+</dl>
+## Typedefs
+<dl>
+<dt><a href="#CharacterSet">CharacterSet</a> : <code>Object</code></dt>
+<dd><p>Password generator character set</p>
+</dd>
 </dl>
 <a name="Archive"></a>
 ## Archive
@@ -140,3 +148,112 @@ Get the core dataset
 Get the history (deltas)
 
 **Kind**: instance method of <code>[Westley](#Westley)</code>  
+<a name="PasswordGenerator"></a>
+## PasswordGenerator
+**Kind**: global class  
+
+* [PasswordGenerator](#PasswordGenerator)
+  * [new PasswordGenerator()](#new_PasswordGenerator_new)
+  * _instance_
+    * [.generatePassword([length])](#PasswordGenerator+generatePassword) ⇒ <code>String</code>
+  * _static_
+    * [.CharacterSet](#PasswordGenerator.CharacterSet) : <code>Object</code>
+      * [.dash](#PasswordGenerator.CharacterSet.dash) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.lowerCaseLetters](#PasswordGenerator.CharacterSet.lowerCaseLetters) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.numbers](#PasswordGenerator.CharacterSet.numbers) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.special](#PasswordGenerator.CharacterSet.special) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.underscore](#PasswordGenerator.CharacterSet.underscore) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.upperCaseLetters](#PasswordGenerator.CharacterSet.upperCaseLetters) : <code>[CharacterSet](#CharacterSet)</code>
+      * [.whitespace](#PasswordGenerator.CharacterSet.whitespace) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.DefaultPasswordLength](#PasswordGenerator.DefaultPasswordLength) : <code>Number</code>
+    * [.MinimumCharacterSets](#PasswordGenerator.MinimumCharacterSets) : <code>Number</code>
+
+<a name="new_PasswordGenerator_new"></a>
+### new PasswordGenerator()
+Password generator
+
+<a name="PasswordGenerator+generatePassword"></a>
+### passwordGenerator.generatePassword([length]) ⇒ <code>String</code>
+Generate a password
+
+**Kind**: instance method of <code>[PasswordGenerator](#PasswordGenerator)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [length] | <code>Number</code> | The length of the generated password (default: PASS_DEFAULT_LEN) |
+
+<a name="PasswordGenerator.CharacterSet"></a>
+### PasswordGenerator.CharacterSet : <code>Object</code>
+Character sets for the password generator
+
+**Kind**: static property of <code>[PasswordGenerator](#PasswordGenerator)</code>  
+
+  * [.CharacterSet](#PasswordGenerator.CharacterSet) : <code>Object</code>
+    * [.dash](#PasswordGenerator.CharacterSet.dash) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.lowerCaseLetters](#PasswordGenerator.CharacterSet.lowerCaseLetters) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.numbers](#PasswordGenerator.CharacterSet.numbers) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.special](#PasswordGenerator.CharacterSet.special) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.underscore](#PasswordGenerator.CharacterSet.underscore) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.upperCaseLetters](#PasswordGenerator.CharacterSet.upperCaseLetters) : <code>[CharacterSet](#CharacterSet)</code>
+    * [.whitespace](#PasswordGenerator.CharacterSet.whitespace) : <code>[CharacterSet](#CharacterSet)</code>
+
+<a name="PasswordGenerator.CharacterSet.dash"></a>
+#### CharacterSet.dash : <code>[CharacterSet](#CharacterSet)</code>
+Dash character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.lowerCaseLetters"></a>
+#### CharacterSet.lowerCaseLetters : <code>[CharacterSet](#CharacterSet)</code>
+Lower-case letters character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.numbers"></a>
+#### CharacterSet.numbers : <code>[CharacterSet](#CharacterSet)</code>
+Numbers character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.special"></a>
+#### CharacterSet.special : <code>[CharacterSet](#CharacterSet)</code>
+Special characters character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.underscore"></a>
+#### CharacterSet.underscore : <code>[CharacterSet](#CharacterSet)</code>
+Underscore character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.upperCaseLetters"></a>
+#### CharacterSet.upperCaseLetters : <code>[CharacterSet](#CharacterSet)</code>
+Upper-case letter character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.CharacterSet.whitespace"></a>
+#### CharacterSet.whitespace : <code>[CharacterSet](#CharacterSet)</code>
+Whitespace character set
+
+**Kind**: static property of <code>[CharacterSet](#PasswordGenerator.CharacterSet)</code>  
+<a name="PasswordGenerator.DefaultPasswordLength"></a>
+### PasswordGenerator.DefaultPasswordLength : <code>Number</code>
+Default generated password length
+
+**Kind**: static property of <code>[PasswordGenerator](#PasswordGenerator)</code>  
+<a name="PasswordGenerator.MinimumCharacterSets"></a>
+### PasswordGenerator.MinimumCharacterSets : <code>Number</code>
+Minimum character sets allowed
+
+**Kind**: static property of <code>[PasswordGenerator](#PasswordGenerator)</code>  
+<a name="CharacterSet"></a>
+## CharacterSet : <code>Object</code>
+Password generator character set
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| title | <code>String</code> | The title of the character set |
+| getChar | <code>function</code> | Get a character from the set |
+| isValidTriplet | <code>function</code> | Validate a string of characters, up to 3 in length |
+| regularity | <code>Number</code> | How regular the char can be: 1 is regular, higher is rare |
+| validEndCap | <code>Boolean</code> | Whether the character set can be used for either end of the password |
+

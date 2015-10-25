@@ -47,6 +47,10 @@
 		return password;
 	};
 
+	/**
+	 * Add a character set to the generator
+	 * @param {}
+	 */
 	PasswordGenerator.prototype.useCharacterSet = function(charSet) {
 		this._characterSets.push(charSet);
 		var finalSets = [],
@@ -76,8 +80,29 @@
 		return charSet;
 	};
 
+	/**
+	 * Password generator character set
+	 * @typedef {Object} CharacterSet
+	 * @property {String} title - The title of the character set
+	 * @property {Function} getChar - Get a character from the set
+	 * @property {Function} isValidTriplet - Validate a string of characters, up to 3 in length
+	 * @property {Number} regularity - How regular the char can be: 1 is regular, higher is rare
+	 * @property {Boolean} validEndCap - Whether the character set can be used for either end of the password
+	 */
+
+	/**
+	 * Character sets for the password generator
+	 * @name CharacterSet
+	 * @type {Object}
+	 * @memberof PasswordGenerator
+	 */
 	PasswordGenerator.CharacterSet = {
 
+		/**
+		 * Dash character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		dash: {
 			title: "Dash/minus (-)",
 			getChar: function() {
@@ -90,6 +115,11 @@
 			validEndCap: true
 		},
 
+		/**
+		 * Lower-case letters character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		lowerCaseLetters: {
 			title: "Lower-case letters (a-z)",
 			getChar: function() {
@@ -104,6 +134,11 @@
 			validEndCap: true
 		},
 
+		/**
+		 * Numbers character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		numbers: {
 			title: "Numbers (0-9)",
 			getChar: function() {
@@ -118,6 +153,11 @@
 			validEndCap: true
 		},
 
+		/**
+		 * Special characters character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		special: (function() {
 			var specialChars = "!@#$%^~&*+=|;:,.?";
 			return {
@@ -133,6 +173,11 @@
 			};
 		})(),
 
+		/**
+		 * Underscore character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		underscore: {
 			title: "Underscore (_)",
 			getChar: function() {
@@ -145,6 +190,11 @@
 			validEndCap: true
 		},
 
+		/**
+		 * Upper-case letter character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		upperCaseLetters: {
 			title: "Upper-case letters (A-Z)",
 			getChar: function() {
@@ -159,6 +209,11 @@
 			validEndCap: true
 		},
 
+		/**
+		 * Whitespace character set
+		 * @type {CharacterSet}
+		 * @memberof PasswordGenerator.CharacterSet
+		 */
 		whitespace: {
 			title: "Whitespace ( )",
 			getChar: function() {
@@ -173,7 +228,20 @@
 
 	};
 
+	/**
+	 * Default generated password length
+	 * @static
+	 * @memberof PasswordGenerator
+	 * @type {Number}
+	 */
 	PasswordGenerator.DefaultPasswordLength = PASS_DEFAULT_LEN;
+
+	/**
+	 * Minimum character sets allowed
+	 * @static
+	 * @memberof PasswordGenerator
+	 * @type {Number}
+	 */
 	PasswordGenerator.MinimumCharacterSets = CHAR_SET_MIN;
 
 	module.exports = PasswordGenerator;
