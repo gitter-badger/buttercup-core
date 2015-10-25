@@ -49,6 +49,16 @@
 
 	PasswordGenerator.prototype.useCharacterSet = function(charSet) {
 		this._characterSets.push(charSet);
+		var finalSets = [],
+			finalNames = [];
+		for (var i = 0, csLen = this._characterSets.length; i < csLen; i += 1) {
+			var cSet = this._characterSets[i];
+			if (finalNames.indexOf(cSet.title) < 0) {
+				finalSets.push(cSet);
+				finalNames.push(cSet.title);
+			}
+		}
+		this._characterSets = finalSets;
 		return this;
 	};
 
