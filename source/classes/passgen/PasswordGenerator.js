@@ -4,7 +4,8 @@
 
 	var parsingTools = require(GLOBAL.root + "/tools/parsing.js");
 
-	var CHAR_SET_MIN = 					2;
+	var CHAR_SET_MIN = 					2,
+		PASS_DEFAULT_LEN = 				12;
 
 	/**
 	 * Password generator
@@ -16,7 +17,7 @@
 
 	/**
 	 * Generate a password
-	 * @param {Number=} length The length of the generated password (default: 12)
+	 * @param {Number=} length The length of the generated password (default: PASS_DEFAULT_LEN)
 	 * @returns {String}
 	 * @memberof PasswordGenerator
 	 */
@@ -24,7 +25,7 @@
 		if (this._characterSets.length < CHAR_SET_MIN) {
 			throw new Error("At least " + CHAR_SET_MIN + " character sets must be used");
 		}
-		length = length || 12;
+		length = length || PASS_DEFAULT_LEN;
 		var password = "",
 			charChecks = [];
 		while (password.length < length) {
@@ -35,9 +36,12 @@
 			if (triplet.length > 3) {
 				triplet = triplet.substr(triplet.length - 3);
 			}
-			if (charset.isValidTriplet(triplet)) {
-				password = trial;
-				charChecks.push(charset.isValidTriplet);
+			if ((charset.validEndCap === false && (trial.length > 1 || trial.length < length)) ||
+				charset.validEndCap === true) {
+				if (charset.isValidTriplet(triplet)) {
+					password = trial;
+					charChecks.push(charset.isValidTriplet);
+				}
 			}
 		}
 		return password;
@@ -59,7 +63,7 @@
 				charSet = charSets[index];
 			}
 		}
-		return charSet;//charSets[index];
+		return charSet;
 	};
 
 	PasswordGenerator.CharacterSet = {
@@ -67,14 +71,13 @@
 		dash: {
 			title: "Dash/minus (-)",
 			getChar: function() {
-				return parsingTools.getRandomChar(
-						"-"
-					);
+				return "-";
 			},
 			isValidTriplet: function(triplet) {
 				return /(^|[^-])-($|[^-])/.test(triplet);
 			},
-			regularity: 10
+			regularity: 10,
+			validEndCap: true
 		},
 
 		lowerCaseLetters: {
@@ -87,7 +90,8 @@
 			isValidTriplet: function(triplet) {
 				return /(^|[^a-z])[a-z]($|[^a-z])/.test(triplet);
 			},
-			regularity: 1
+			regularity: 1,
+			validEndCap: true
 		},
 
 		numbers: {
@@ -100,7 +104,8 @@
 			isValidTriplet: function(triplet) {
 				return /(^|[^0-9])[0-9]($|[^0-9])/.test(triplet)
 			},
-			regularity: 1
+			regularity: 1,
+			validEndCap: true
 		},
 
 		special: (function() {
@@ -113,21 +118,21 @@
 				isValidTriplet: function(triplet) {
 					return parsingTools.hasDuplicateChars(triplet, specialChars) === false;
 				},
-				regularity: 4
+				regularity: 4,
+				validEndCap: true
 			};
 		})(),
 
 		underscore: {
 			title: "Underscore (_)",
 			getChar: function() {
-				return parsingTools.getRandomChar(
-						"_"
-					);
+				return "_";
 			},
 			isValidTriplet: function(triplet) {
 				return /(^|[^_])_($|[^_])/.test(triplet);
 			},
-			regularity: 10
+			regularity: 10,
+			validEndCap: true
 		},
 
 		upperCaseLetters: {
@@ -140,11 +145,25 @@
 			isValidTriplet: function(triplet) {
 				return /(^|[^A-Z])[A-Z]($|[^A-Z])/.test(triplet);
 			},
-			regularity: 1
+			regularity: 1,
+			validEndCap: true
+		},
+
+		whitespace: {
+			title: "Whitespace ( )",
+			getChar: function() {
+				return " ";
+			},
+			isValidTriplet: function(triplet) {
+				return /(^|[^ ]) ($|[^ ])/.test(triplet);
+			},
+			regularity: 10,
+			validEndCap: false
 		}
 
 	};
 
+	PasswordGenerator.DefaultPasswordLength = PASS_DEFAULT_LEN;
 	PasswordGenerator.MinimumCharacterSets = CHAR_SET_MIN;
 
 	module.exports = PasswordGenerator;

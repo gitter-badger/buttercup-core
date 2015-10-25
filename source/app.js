@@ -99,6 +99,7 @@
 		.useCharacterSet(PasswordGenerator.CharacterSet.upperCaseLetters)
 		.useCharacterSet(PasswordGenerator.CharacterSet.dash)
 		.useCharacterSet(PasswordGenerator.CharacterSet.underscore)
+		.useCharacterSet(PasswordGenerator.CharacterSet.whitespace)
 		.useCharacterSet(PasswordGenerator.CharacterSet.special)
 		.useCharacterSet(PasswordGenerator.CharacterSet.numbers);
 	console.log("pass:", pg.generatePassword(32));
