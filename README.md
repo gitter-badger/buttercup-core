@@ -113,7 +113,7 @@ Merging is especially helpful for situations where archives can be modified at a
 You can import other databases into Buttercup, such as KeePass. You need to export an XML file from the KeePass2 database first, before passing it into the importer.
 
 ```
-var Buttercup = require("Buttercup"),
+var Buttercup = require("buttercup"),
 	KeePass2XMLImporter = Buttercup.KeePass2XMLImporter,
 
 KeePass2XMLImporter.loadFromFile(__dirname + "/../_resources/test.kdbx.xml")
